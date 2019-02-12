@@ -1,0 +1,170 @@
+/*
+    SETTINGS
+*/
+@import url('https://fonts.googleapis.com/css?family=Sarabun');
+
+:root {
+    --color-alpha: #DE4831;
+    --color-beta:  #E1DECB;
+    --color-dark:  #221E21;
+
+    --gutter: 24px;
+}
+
+/*
+    ELEMENTS
+*/
+
+body,
+html {
+    /* Positioning */
+
+    /* Box model */
+
+    /* Fonts */
+    font-family: 'Sarabun', sans-serif;
+    font-size:   17px;
+    line-height: 1.6;
+    color:       var(--color-dark);
+
+    /* Appearance */
+
+    /* Other styles */
+}
+
+/*
+    OBJECTS
+*/
+
+/*
+    Object: Grid
+    ---
+    CSS Grid
+*/
+
+.o-grid {
+    display: grid;
+    gap:     calc( var(--gutter) * 2);
+}
+
+/* 
+    COMPONENTS 
+*/
+
+/*
+    Component: Sidebar
+    ---
+    Sidebar navigation
+*/
+
+.c-sidebar {
+    display:         flex;
+    flex-direction:  column;
+    justify-content: space-between;
+    height:          100vh;
+    
+    background:      var(--color-beta);
+    overflow-x:      auto;
+    overflow-y:      hidden;
+    box-sizing:      border-box;
+    padding:         var(--gutter);
+}
+
+.c-sidebar-header {
+    display:     flex;
+    align-items: center;
+}
+
+.c-sidebar-header__image {
+    max-height:   var(--gutter);
+}
+
+.c-sidebar-header__title {
+    font-size: 2rem;
+    margin-left: calc(var(--gutter) / 2);
+}
+
+.c-sidebar-menu {
+
+}
+
+.c-sidebar-counter {
+    font-size:   1rem;
+    font-weight: 600;
+    font-style:  normal;
+}
+
+/*
+    Component: Menu
+    ---
+    Menu inside our sidebar
+*/
+
+.c-menu__title {
+    font-style:     .8rem;
+    opacity:        .7;
+    text-transform: uppercase;
+    margin-bottom:  0;
+}
+
+.c-menu__list {
+    list-style: none;
+    padding:    0;
+    margin:     0 0 calc(var(--gutter) * 5);
+}
+
+.c-menu__item {
+
+}
+
+.c-menu__link {
+    all:            unset;
+
+    font-weight:    600;
+    color:          var(--color-alpha);
+    letter-spacing: 1px;
+    font-size:      1rem;
+
+    will-change:    opacity;
+    transition:     opacity 200ms ease-out;
+
+    opacity:        .7;
+    cursor:         pointer;
+}
+
+.c-menu__link:hover {
+    opacity: 1;
+}
+
+/*
+    Component: Content
+    ---
+    Our content
+*/
+
+.c-content {
+    height:     100vh;
+    overflow-x: auto;
+
+    box-sizing: border-box;
+    padding:    var(--gutter);
+}
+
+/* 
+    UTILITIES 
+*/
+
+/*
+    Utility: Grid
+    ---
+    Utilities to improve our CSS Grid
+*/
+
+.u-grid-main-layout {
+    min-height: 100vh;
+    grid-template-columns: 350px 1fr;
+}
+
+.u-color-alpha {
+    color: var(--color-alpha);
+}
