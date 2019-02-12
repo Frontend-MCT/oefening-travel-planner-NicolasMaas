@@ -143,11 +143,11 @@ html {
 */
 
 .c-content {
-    height:     100vh;
-    overflow-x: auto;
+    height:        100vh;
+    overflow-x:    auto;
 
-    box-sizing: border-box;
-    padding:    var(--gutter);
+    box-sizing:    border-box;
+    padding-right: calc(var(--gutter) * 2);
 }
 
 /* 
@@ -161,9 +161,19 @@ html {
 */
 
 .u-grid-main-layout {
-    min-height: 100vh;
+    min-height:            100vh;
     grid-template-columns: 350px 1fr;
 }
+
+.u-grid-overview {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/*
+    Utility: Color
+    ---
+    Helper classes for color
+*/
 
 .u-color-alpha {
     color: var(--color-alpha);
