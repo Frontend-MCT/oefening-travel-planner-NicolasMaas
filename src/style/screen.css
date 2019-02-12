@@ -8,7 +8,7 @@
     --color-beta:  #E1DECB;
     --color-dark:  #221E21;
 
-    --gutter: 24px;
+    --gutter:        24px;
 }
 
 /*
@@ -47,6 +47,23 @@ html {
     gap:     calc( var(--gutter) * 2);
 }
 
+/*
+    Object: Hide
+    ---
+    Hide input fields
+*/
+
+.o-hide {
+    position: absolute;
+    width:    1px;
+    height:   1px;
+    padding:  0;
+    margin:   -1px;
+    overflow: hidden;
+    clip:     rect(0, 0, 0, 0);
+    border:   0;
+}
+
 /* 
     COMPONENTS 
 */
@@ -80,7 +97,7 @@ html {
 }
 
 .c-sidebar-header__title {
-    font-size: 2rem;
+    font-size:   2rem;
     margin-left: calc(var(--gutter) / 2);
 }
 
@@ -147,7 +164,49 @@ html {
     overflow-x:    auto;
 
     box-sizing:    border-box;
-    padding-right: calc(var(--gutter) * 2);
+    padding:       var(--gutter) calc(var(--gutter) * 2) var(--gutter) 0;
+}
+
+/*
+    Component: Countries
+    ---
+    Style countries
+*/
+
+.c-country {
+    display:     block;
+    opacity:     1;
+    cursor:      pointer;
+
+    will-change: opacity;
+    transition:  opacity 150ms ease-in-out;
+}
+
+.c-country-input:checked + .c-country {
+    opacity: .4;
+}
+
+.c-country-header {
+    display:     flex;
+    align-items: center;
+}
+
+.c-country-header__name {
+    font-size: 1.2rem;
+    margin:    0;
+}
+
+.c-country-header__flag {
+    display:       block;
+    width:         auto;
+    height:        calc(var(--gutter) / 1.4);
+    border-radius: 5px;
+    margin-left:   8px;
+}
+
+.c-country__native-name {
+    opacity: .6;
+    margin:  0;
 }
 
 /* 
@@ -166,7 +225,7 @@ html {
 }
 
 .u-grid-overview {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
 /*
