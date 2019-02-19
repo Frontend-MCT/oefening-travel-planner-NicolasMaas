@@ -35,7 +35,7 @@ const showNotification = (element) => {
     let notification = document.createElement('div');
     notification.classList.add('c-notification');
     notification.innerHTML = `
-        <h2 class="c-notification__header">You have selected ${element.dataset.countryName}.</h2>
+        <h2 class="c-notification__header">You have selected ${element.dataset.countryName} ✔</h2>
         <button class="c-notification__action">undo</button>
     `;
 

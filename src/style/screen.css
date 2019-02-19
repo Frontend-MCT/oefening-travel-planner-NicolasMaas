@@ -44,7 +44,7 @@ html {
 
 .o-grid {
     display: grid;
-    gap:     calc( var(--gutter) * 2);
+    gap:     calc(var(--gutter) * 2);
 }
 
 /*
@@ -88,17 +88,17 @@ html {
 }
 
 .c-sidebar-header {
-    display:     flex;
-    align-items: center;
+    display:         flex;
+    align-items:     center;
 }
 
 .c-sidebar-header__image {
-    max-height:   var(--gutter);
+    max-height:      var(--gutter);
 }
 
 .c-sidebar-header__title {
-    font-size:   2rem;
-    margin-left: calc(var(--gutter) / 2);
+    font-size:       2rem;
+    margin-left:     calc(var(--gutter) / 2);
 }
 
 .c-sidebar-menu {
@@ -106,9 +106,9 @@ html {
 }
 
 .c-sidebar-counter {
-    font-size:   1rem;
-    font-weight: 600;
-    font-style:  normal;
+    font-size:      1rem;
+    font-weight:    600;
+    font-style:     normal;
 }
 
 /*
@@ -192,8 +192,8 @@ html {
 }
 
 .c-country-header__name {
-    font-size: 1.2rem;
-    margin:    0;
+    font-size:     1.2rem;
+    margin:        0;
 }
 
 .c-country-header__flag {
