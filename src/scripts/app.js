@@ -29,15 +29,28 @@ const getAllItems = () => { return JSON.parse(localStorage.getItem(localKey)) ||
 const countItems = key => { return getAllItems().length; }
 
 const updateCounter = () => { countryCounter.innerHTML = countItems(); }
-
-const showNotification = element => {
-    const notification = `
-        <div class="c-notification">
-            <h2 class="c-notification__header">You have selected ${element.dataset.countryName}.</h2>
-            <button class="c-notification__action">undo</button>
-        </div>
+  
+const showNotification = (element) => {
+    // Show Notification
+    let notification = document.createElement('div');
+    notification.classList.add('c-notification');
+    notification.innerHTML = `
+        <h2 class="c-notification__header">You have selected ${element.dataset.countryName}.</h2>
+        <button class="c-notification__action">undo</button>
     `;
-    notificationHolder.innerHTML += notification;
+
+    document.querySelector('.js-notification-holder').append(notification);
+    // Fade out after 800ms
+    setTimeout(() => {
+        removeNotification(notification);
+    }, 1500);
+}
+
+const removeNotification = notification => {
+    notification.addEventListener('transitionend', function() {
+        notificationHolder.removeChild(notification);
+    }, 800);
+    notification.classList.add('u-fade-out');
 }
 
 const addListenersToCountries = function(classSelector) {
@@ -120,7 +133,6 @@ const enableListeners = () => {
 
 const init = () => {
     console.log('DOM is ingeladen 🚀');
-
     enableListeners();
 };
 
