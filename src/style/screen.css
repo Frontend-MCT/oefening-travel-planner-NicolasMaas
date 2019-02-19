@@ -215,6 +215,51 @@ html {
     Notification center
 */
 
+.c-notifications {
+    position: absolute;
+    bottom:   0;
+    right:    calc(var(--gutter) * 2);
+
+    width:    300px;
+}
+
+.c-notification {
+    margin:  var(--gutter) 0;
+    padding: calc(var(--gutter) / 2);
+
+    background: white;
+    box-shadow: 1px 1px 2px 1px rgba(30, 30, 30, .1);
+
+    will-change: opacity;
+    opacity:     1;
+
+    transition:  opacity 800ms ease-in-out;
+}
+
+.c-notification__header {
+    margin:    0;
+    font-size: 1.1rem;
+}
+
+.c-notification__action {
+    all:             unset;
+
+    font-size:       0.9rem;
+    color:           var(--color-alpha);
+    text-transform:  uppercase;
+    text-decoration: underline;
+
+    cursor:          pointer;
+    will-change:     opacity;
+    opacity:         .5;
+
+    transition:      opacity 200ms ease-in-out;
+}
+
+.c-notifcation__action:hover {
+    opacity:         1;
+}
+
 /* 
     UTILITIES 
 */
