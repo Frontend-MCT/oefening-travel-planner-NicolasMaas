@@ -8,6 +8,7 @@ const localKey = 'travel-planner';
 
 const removeItem = key => {
     const index = getAllItems().indexOf(key);
+    console.log('❌', key, 'removed ❌');
     let savedCountries = getAllItems();
     savedCountries.splice(index, 1);
     localStorage.setItem(localKey, JSON.stringify(savedCountries));
@@ -29,6 +30,16 @@ const countItems = key => { return getAllItems().length; }
 
 const updateCounter = () => { countryCounter.innerHTML = countItems(); }
 
+const showNotification = element => {
+    const notification = `
+        <div class="c-notification">
+            <h2 class="c-notification__header">You have selected ${element.dataset.countryName}.</h2>
+            <button class="c-notification__action">undo</button>
+        </div>
+    `;
+    notificationHolder.innerHTML += notification;
+}
+
 const addListenersToCountries = function(classSelector) {
     const countries = document.querySelectorAll(classSelector);
 
@@ -36,13 +47,13 @@ const addListenersToCountries = function(classSelector) {
         country.addEventListener('click', function() {
             // Get the clicked country
             const selected = this.getAttribute('for');
-            // console.log('👇🏻', this.getAttribute('for'), '👇🏻');
 
             if (hasItem(selected)) {
                 removeItem(selected);
             }
             else {
                 addItem(selected);
+                showNotification(country);
             }
             updateCounter();
         });
@@ -59,7 +70,7 @@ const showCountries = data => {
             <article>
                 <input type="checkbox" class="o-hide c-country-input" name="" id="${c.cioc}-${c.alpha2Code}" ${(hasItem(c.cioc + '-' + c.alpha2Code)) ? 'checked="checked"' : ''}>
 
-                <label for="${c.cioc}-${c.alpha2Code}" class="c-country js-country">
+                <label for="${c.cioc}-${c.alpha2Code}" class="c-country js-country" data-country-name="${c.name}">
                     <div class="c-country-header">
                         <h2 class="c-country-header__name">${c.name}</h2>
                         <img class="c-country-header__flag" src="${c.flag}" alt="The flag of Belgium." title="The flag of ${c.name}.">
@@ -100,6 +111,7 @@ const enableListeners = () => {
 
     countryHolder = document.querySelector('.js-country-holder');
     countryCounter = document.querySelector('.js-counter');
+    notificationHolder = document.querySelector('.js-notification-holder');
 
     // Always start with Europe
     fetchCountries('europe');
