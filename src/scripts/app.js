@@ -1,7 +1,53 @@
 console.log('Welcome 👋🏻!');
 
 // Global variables
-let countryHolder;
+let countryHolder,
+    countryCounter;
+
+const localKey = 'travel-planner';
+
+const removeItem = key => {
+    const index = getAllItems().indexOf(key);
+    let savedCountries = getAllItems();
+    savedCountries.splice(index, 1);
+    localStorage.setItem(localKey, JSON.stringify(savedCountries));
+};
+
+const addItem = key => {
+    let countries = getAllItems();
+    countries.push(key);
+    localStorage.setItem(localKey, JSON.stringify(countries));
+    console.log('🌍', key, 'added 🌍');
+    // console.log('🔢', countItems(), '🔢');
+};
+
+const hasItem = key => { return getAllItems().includes(key); };
+
+const getAllItems = () => { return JSON.parse(localStorage.getItem(localKey)) || []; };
+
+const countItems = key => { return getAllItems().length; }
+
+const updateCounter = () => { countryCounter.innerHTML = countItems(); }
+
+const addListenersToCountries = function(classSelector) {
+    const countries = document.querySelectorAll(classSelector);
+
+    for (const country of countries) {
+        country.addEventListener('click', function() {
+            // Get the clicked country
+            const selected = this.getAttribute('for');
+            // console.log('👇🏻', this.getAttribute('for'), '👇🏻');
+
+            if (hasItem(selected)) {
+                removeItem(selected);
+            }
+            else {
+                addItem(selected);
+            }
+            updateCounter();
+        });
+    }
+}
 
 const showCountries = data => {
     // #1. Loop the data
@@ -11,7 +57,7 @@ const showCountries = data => {
         // #2. Build an HTML-string for each country
         countries += `
             <article>
-                <input type="checkbox" class="o-hide c-country-input" name="" id="${c.cioc}-${c.alpha2Code}">
+                <input type="checkbox" class="o-hide c-country-input" name="" id="${c.cioc}-${c.alpha2Code}" ${(hasItem(c.cioc + '-' + c.alpha2Code)) ? 'checked="checked"' : ''}>
 
                 <label for="${c.cioc}-${c.alpha2Code}" class="c-country js-country">
                     <div class="c-country-header">
@@ -21,13 +67,13 @@ const showCountries = data => {
                     <p class="c-country__native-name">${c.nativeName}</p>
                 </label>
             </article>
-        `
+        `;
     }
 
     countryHolder.innerHTML = countries;
-    // #3. Adjust CSS -> screen.css:
-    //     - Click on country :checked
-    //     - Flag correct height
+    // HTML is loaded
+
+    addListenersToCountries('.js-country');
 };
 
 const fetchCountries = region => {
@@ -53,9 +99,11 @@ const enableListeners = () => {
     }
 
     countryHolder = document.querySelector('.js-country-holder');
+    countryCounter = document.querySelector('.js-counter');
 
     // Always start with Europe
     fetchCountries('europe');
+    updateCounter();
 };
 
 const init = () => {
